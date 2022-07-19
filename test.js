@@ -6,59 +6,58 @@ describe("Testing API", () => {
 
   it("Get all data", function (done) {
     request(api.app)
-      .get("/")
+      .get("/api/address/")
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect((res) => {
-        assert.strictEqual(res.body.db.length, 5);
+        assert.strictEqual(res.body.db.length, 100);
       })
       .expect(200, done);
   });
 
-  it("Add a new Address", () => {
+  it("Add a new Address", (done) => {
+    const api = require("./api.js");
+
     request(api.app)
       .post("/api/address/")
       .set("Accept", "application/json")
       .send({
-        name: "John",
-        email: "john@gmail.com",
-        address: {
-          city: "London",
-          street: "Downey street",
-          number: "20",
-          postCode: "L1 5W6",
-        },
+        street: "Via Dei Mirti",
+        number: "17",
+        postalCode: "97100",
+        city: "Ragusa",
+        countryCode: "IT",
+        country: "Italy",
       })
       .expect("Content-Type", /json/)
-      .expect("location", /\/api\/developers\//)
       .expect((res) => {
-        assert.strictEqual(res.body.name, "John");
+        assert.strictEqual(res.body.city, "Ragusa");
       })
       .expect(201, done);
   });
 
-  it("Update an existing address", () => {
-    request(api.app)
-      .patch("/api/address/1")
-      .set("Accept", "application/json")
-      .send({
-        name: "Salt",
-        email: "salt@gmail.com",
-        address: { city: "Amsterdam" },
-      })
-      .expect("Content-Type", /json/)
-      .expect((res) => {
-        assert.strictEqual(res.body.db.name, "Salt");
-        assert.strictEqual(res.body.db.email, "salt@gmail.com");
-        assert.strictEqual(res.body.db.address.city, "Amsterdam");
-        assert.strictEqual(res.body.db.address.street, "Main St");
-        assert.strictEqual(res.body.db.address.number, "10");
-        assert.strictEqual(res.body.db.address.postCode, "12345678");
-      })
-      .expect(200, done);
-  });
+  // it("Update an existing address", (done) => {
+  //   request(api.app)
+  //     .patch("/api/address/1")
+  //     .set("Accept", "application/json")
+  //     .send({
+  //       street: "Salt",
+  //       city: "Amsterdam",
+  //       country: "Netherlands",
+  //     })
+  //     .expect("Content-Type", /json/)
+  //     .expect((res) => {
+  //       assert.strictEqual(res.body.db.street, "Salt");
+  //       assert.strictEqual(res.body.db.number, "0");
+  //       assert.strictEqual(res.body.db.address.postalCode, "183027");
+  //       assert.strictEqual(res.body.db.address.city, "Amsterdam");
+  //       assert.strictEqual(res.body.db.address.countryCode, "CO");
+  //       assert.strictEqual(res.body.db.address.country, "Netherlands");
+  //     })
+  //     .expect(200, done);
+  // });
 
-  it("Delete address", () => {
-    request(api.app).delete("/api/address/2").expect(204, done);
-  });
+  // it("Delete address", (done) => {
+  //   request(api.app).delete("/api/address/2").expect(204, done);
+  // });
 });
