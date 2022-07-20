@@ -10,7 +10,7 @@ describe("Testing API", () => {
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect((res) => {
-        assert.strictEqual(res.body.db.length, 100);
+        assert.strictEqual(res.body.length, 100);
       })
       .expect(200, done);
   });
@@ -36,28 +36,28 @@ describe("Testing API", () => {
       .expect(201, done);
   });
 
-  // it("Update an existing address", (done) => {
-  //   request(api.app)
-  //     .patch("/api/address/1")
-  //     .set("Accept", "application/json")
-  //     .send({
-  //       street: "Salt",
-  //       city: "Amsterdam",
-  //       country: "Netherlands",
-  //     })
-  //     .expect("Content-Type", /json/)
-  //     .expect((res) => {
-  //       assert.strictEqual(res.body.db.street, "Salt");
-  //       assert.strictEqual(res.body.db.number, "0");
-  //       assert.strictEqual(res.body.db.address.postalCode, "183027");
-  //       assert.strictEqual(res.body.db.address.city, "Amsterdam");
-  //       assert.strictEqual(res.body.db.address.countryCode, "CO");
-  //       assert.strictEqual(res.body.db.address.country, "Netherlands");
-  //     })
-  //     .expect(200, done);
-  // });
+  it("Update an existing address", (done) => {
+    request(api.app)
+      .patch("/api/address/1")
+      .set("Accept", "application/json")
+      .send({
+        street: "Salt",
+        city: "Amsterdam",
+        country: "Netherlands",
+      })
+      .expect("Content-Type", /json/)
+      .expect((res) => {
+        assert.strictEqual(res.body.street, "Salt");
+        assert.strictEqual(res.body.number, "8");
+        assert.strictEqual(res.body.postalCode, "457650");
+        assert.strictEqual(res.body.city, "Amsterdam");
+        assert.strictEqual(res.body.countryCode, "RU");
+        assert.strictEqual(res.body.country, "Netherlands");
+      })
+      .expect(200, done);
+  });
 
-  // it("Delete address", (done) => {
-  //   request(api.app).delete("/api/address/2").expect(204, done);
-  // });
+  it("Delete address", (done) => {
+    request(api.app).delete("/api/address/2").expect(204, done);
+  });
 });
