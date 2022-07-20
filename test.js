@@ -57,7 +57,23 @@ describe("Testing API", () => {
       .expect(200, done);
   });
 
+  it("Fail Update id not found", (done) => {
+    request(api.app)
+      .patch("/api/address/3000")
+      .set("Accept", "application/json")
+      .send({
+        street: "Salt",
+        city: "Amsterdam",
+        country: "Netherlands",
+      })
+      .expect(404, done);
+  });
+
   it("Delete address", (done) => {
     request(api.app).delete("/api/address/2").expect(204, done);
+  });
+
+  it("Fail Delete id not found", (done) => {
+    request(api.app).delete("/api/address/5000").expect(404, done);
   });
 });
