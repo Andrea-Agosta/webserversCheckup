@@ -11,11 +11,13 @@ app.get("/api/address/", (req, res) => {
 app.post("/api/address/", (req, res) => {
   const newAddress = {
     id: db.length + 1,
+    avatar: req.body.avatar,
+    first_name: req.body.first_name,
+    email: req.body.email,
     street: req.body.street,
     number: req.body.number,
-    postalCode: req.body.postalCode,
     city: req.body.city,
-    countryCode: req.body.countryCode,
+    postcode: req.body.postcode,
     country: req.body.country,
   };
 
@@ -35,13 +37,14 @@ app.patch("/api/address/:id", (req, res) => {
       res.status(400).send("Bad request");
     } else {
       let address = getAddressById(req.params.id);
+      req.body.avatar !== undefined && (address.avatar = req.body.avatar);
+      req.body.first_name !== undefined &&
+        (address.first_name = req.body.first_name);
+      req.body.email !== undefined && (address.email = req.body.email);
       req.body.street !== undefined && (address.street = req.body.street);
       req.body.number !== undefined && (address.number = req.body.number);
-      req.body.postalCode !== undefined &&
-        (address.postalCode = req.body.postalCode);
       req.body.city !== undefined && (address.city = req.body.city);
-      req.body.countryCode !== undefined &&
-        (address.countryCode = req.body.countryCode);
+      req.body.postcode !== undefined && (address.postcode = req.body.postcode);
       req.body.country !== undefined && (address.country = req.body.country);
       res.status(200).json(address);
     }

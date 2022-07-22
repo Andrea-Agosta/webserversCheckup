@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address List</title>
+    <link rel="stylesheet" href="./style.css">
+    <script>
+        // define the fetch 
+        function getUsers() {
+            fetch('http://localhost:3000/api/address/')
+            .then(response => response.json())
+            .then(data => {
+                for (i = 0; i < data.length; i++) {
+                    let tr = document.createElement('tr');
+                    let tdAddress = document.createElement('td');
+                    let tdCity = document.createElement('td');
+                    let tdPostalCode = document.createElement('td');
+                    let tdCountry = document.createElement('td');
+                    i % 2 === 0 && tr.classList.add("gray");
+                    tdAddress.innerHTML = data[i].number + " " + data[i].street;
+                    tdCity.innerHTML = data[i].city;
+                    tdPostalCode.innerHTML = data[i].postalCode;
+                    tdCountry.innerHTML = data[i].country;
+                    document.getElementsByClassName('table')[0].appendChild(tr).appendChild(tdAddress);
+                    document.getElementsByClassName('table')[0].appendChild(tr).appendChild(tdCity);
+                    document.getElementsByClassName('table')[0].appendChild(tr).appendChild(tdPostalCode);
+                    document.getElementsByClassName('table')[0].appendChild(tr).appendChild(tdCountry);
+                }
+            });
+        };
+
+        document.addEventListener('DOMContentLoaded', function () {
+            getUsers();
+        });
+    </script>
+</head>
+<body>
+    <div class="bar">
+        <img class="logo" src="./images/logo.png" alt="logo">
+        <div class="title">Address Book</div>
+    </div>
+
+    <list>
+        <div class="container">
+            <table class="table opacity" cellspacing="0">
+                <tr>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Postal Code</th>
+                    <th>Country</th>
+                </tr>
+            </table>
+        </div>
+    </list>
+</body>
+</html>
