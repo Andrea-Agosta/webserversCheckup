@@ -12,24 +12,107 @@
             fetch('http://localhost:3000/api/address/')
             .then(response => response.json())
             .then(data => {
+                // for (i = 0; i < data.length; i++) {
+                //     let tr = document.createElement('tr');
+                //     let tdAddress = document.createElement('td');
+                //     let tdCity = document.createElement('td');
+                //     let tdPostalCode = document.createElement('td');
+                //     let tdCountry = document.createElement('td');
+                //     i % 2 === 0 && tr.classList.add("gray");
+                //     tdAddress.innerHTML = data[i].street;
+                //     tdCity.innerHTML = data[i].city;
+                //     tdPostalCode.innerHTML = data[i].postcode;
+                //     tdCountry.innerHTML = data[i].country;
+                //     document.getElementsByClassName('table')[0].appendChild(tr).appendChild(tdAddress);
+                //     document.getElementsByClassName('table')[0].appendChild(tr).appendChild(tdCity);
+                //     document.getElementsByClassName('table')[0].appendChild(tr).appendChild(tdPostalCode);
+                //     document.getElementsByClassName('table')[0].appendChild(tr).appendChild(tdCountry);
+                // }
+
+
                 for (i = 0; i < data.length; i++) {
-                    let tr = document.createElement('tr');
-                    let tdAddress = document.createElement('td');
-                    let tdCity = document.createElement('td');
-                    let tdPostalCode = document.createElement('td');
-                    let tdCountry = document.createElement('td');
-                    i % 2 === 0 && tr.classList.add("gray");
-                    tdAddress.innerHTML = data[i].number + " " + data[i].street;
-                    tdCity.innerHTML = data[i].city;
-                    tdPostalCode.innerHTML = data[i].postalCode;
-                    tdCountry.innerHTML = data[i].country;
-                    document.getElementsByClassName('table')[0].appendChild(tr).appendChild(tdAddress);
-                    document.getElementsByClassName('table')[0].appendChild(tr).appendChild(tdCity);
-                    document.getElementsByClassName('table')[0].appendChild(tr).appendChild(tdPostalCode);
-                    document.getElementsByClassName('table')[0].appendChild(tr).appendChild(tdCountry);
+                    let card = document.createElement('div');
+                    let cardContainer = document.createElement('div');
+                    let cardContainer2 = document.createElement('div');
+                    let avatar = document.createElement('img');
+                    let name = document.createElement('h4');
+                    let email = document.createElement('h4');
+                    let street = document.createElement('h4');
+                    let city = document.createElement('h4');
+                    let postcode = document.createElement('h4');
+                    let country = document.createElement('h4');
+                    card.classList.add('card');
+                    cardContainer.classList.add('cardContainer');
+                    cardContainer2.classList.add('cardContainer2');
+                    avatar.classList.add('avatar');
+                    avatar.src = data[i].avatar;
+                    name.innerHTML = "NAME: " + `<span>`+ data[i].first_name +`</span>`;
+                    email.innerHTML = "EMAIL: " + `<span>`+ data[i].email +`</span>`;
+                    street.innerHTML = "STREET: " + `<span>`+ data[i].street +`</span>`;
+                    city.innerHTML = "CITY: " + `<span>`+ data[i].city +`</span>`;
+                    postcode.innerHTML = "POSTCODE: " + `<span>`+ data[i].postcode +`</span>`;
+                    country.innerHTML = "COUNTRY: " + `<span>`+ data[i].country + ' - ' + data[i].countryCode +`</span>`;
+
+                    document.getElementsByClassName('container')[0]
+                        .appendChild(card)
+                        .appendChild(cardContainer)
+                        .appendChild(avatar)
+                    document.getElementsByClassName('container')[0]
+                        .appendChild(card)
+                        .appendChild(cardContainer)
+                        .appendChild(name)
+                    document.getElementsByClassName('container')[0]
+                        .appendChild(card)
+                        .appendChild(cardContainer)
+                        .appendChild(email)
+                    document.getElementsByClassName('container')[0]
+                        .appendChild(card)
+                        .appendChild(cardContainer2)
+                        .appendChild(street);
+                    document.getElementsByClassName('container')[0]
+                        .appendChild(card)
+                        .appendChild(cardContainer2)
+                        .appendChild(city);
+                    document.getElementsByClassName('container')[0]
+                        .appendChild(card)
+                        .appendChild(cardContainer2)
+                        .appendChild(postcode);
+                    document.getElementsByClassName('container')[0]
+                        .appendChild(card)
+                        .appendChild(cardContainer2)
+                        .appendChild(country);
                 }
             });
         };
+
+        function addContact() {
+            // document.getElementsByClassName('add').mouseover( () => {
+            //     console.log('hi');
+            // });
+
+            const modals = document.querySelectorAll('[data-modal]');
+
+            modals.forEach(function (trigger) {
+                trigger.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    const modal = document.getElementById(trigger.dataset.modal);
+                    modal.classList.add('open');
+                    const exits = modal.querySelectorAll('.modal-exit');
+                    exits.forEach(function (exit) {
+                        exit.addEventListener('click', function (event) {
+                            event.preventDefault();
+                            modal.classList.remove('open');
+                        });
+                    });
+                });
+            });    
+
+
+
+
+
+
+        }
 
         document.addEventListener('DOMContentLoaded', function () {
             getUsers();
@@ -41,18 +124,29 @@
         <img class="logo" src="./images/logo.png" alt="logo">
         <div class="title">Address Book</div>
     </div>
-
     <list>
         <div class="container">
-            <table class="table opacity" cellspacing="0">
+            <!-- <table class="table opacity" cellspacing="0">
                 <tr>
                     <th>Address</th>
                     <th>City</th>
                     <th>Postal Code</th>
                     <th>Country</th>
                 </tr>
-            </table>
+            </table> -->
         </div>
     </list>
+    <button class="add" data-modal="modal-one" title="Add New Contact" onclick="addContact()"> + </button>
+
+    <!-- MODAL -->
+    <div class="modal" id="modal-one">
+        <div class="modal-bg modal-exit"></div>
+        <div class="modal-container">
+          <h1>Amazing Modal</h1>
+          <h2>Pure Vanilla JavaScript</h2>
+          <button class="modal-close modal-exit">X</button>
+        </div>
+      </div>
+    </div>
 </body>
 </html>
