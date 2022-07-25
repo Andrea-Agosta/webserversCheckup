@@ -12,24 +12,6 @@
             fetch('http://localhost:3000/api/address/')
             .then(response => response.json())
             .then(data => {
-                // for (i = 0; i < data.length; i++) {
-                //     let tr = document.createElement('tr');
-                //     let tdAddress = document.createElement('td');
-                //     let tdCity = document.createElement('td');
-                //     let tdPostalCode = document.createElement('td');
-                //     let tdCountry = document.createElement('td');
-                //     i % 2 === 0 && tr.classList.add("gray");
-                //     tdAddress.innerHTML = data[i].street;
-                //     tdCity.innerHTML = data[i].city;
-                //     tdPostalCode.innerHTML = data[i].postcode;
-                //     tdCountry.innerHTML = data[i].country;
-                //     document.getElementsByClassName('table')[0].appendChild(tr).appendChild(tdAddress);
-                //     document.getElementsByClassName('table')[0].appendChild(tr).appendChild(tdCity);
-                //     document.getElementsByClassName('table')[0].appendChild(tr).appendChild(tdPostalCode);
-                //     document.getElementsByClassName('table')[0].appendChild(tr).appendChild(tdCountry);
-                // }
-
-
                 for (i = 0; i < data.length; i++) {
                     let card = document.createElement('div');
                     let cardContainer = document.createElement('div');
@@ -86,18 +68,13 @@
         };
 
         function addContact() {
-            // document.getElementsByClassName('add').mouseover( () => {
-            //     console.log('hi');
-            // });
-
             const modals = document.querySelectorAll('[data-modal]');
-
             modals.forEach(function (trigger) {
                 trigger.addEventListener('click', function (event) {
                     event.preventDefault();
                     const modal = document.getElementById(trigger.dataset.modal);
                     modal.classList.add('open');
-                    const exits = modal.querySelectorAll('.modal-exit');
+                    const exits = modal.querySelectorAll('.modalExit');
                     exits.forEach(function (exit) {
                         exit.addEventListener('click', function (event) {
                             event.preventDefault();
@@ -106,12 +83,6 @@
                     });
                 });
             });    
-
-
-
-
-
-
         }
 
         document.addEventListener('DOMContentLoaded', function () {
@@ -126,25 +97,53 @@
     </div>
     <list>
         <div class="container">
-            <!-- <table class="table opacity" cellspacing="0">
-                <tr>
-                    <th>Address</th>
-                    <th>City</th>
-                    <th>Postal Code</th>
-                    <th>Country</th>
-                </tr>
-            </table> -->
         </div>
     </list>
-    <button class="add" data-modal="modal-one" title="Add New Contact" onclick="addContact()"> + </button>
+    <button class="add" data-modal="modalOne" title="Add New Contact" onclick="addContact()"> + </button>
 
     <!-- MODAL -->
-    <div class="modal" id="modal-one">
-        <div class="modal-bg modal-exit"></div>
-        <div class="modal-container">
-          <h1>Amazing Modal</h1>
-          <h2>Pure Vanilla JavaScript</h2>
-          <button class="modal-close modal-exit">X</button>
+    <div class="modal" id="modalOne">
+        <div class="modalBg modalExit"></div>
+        <div class="modalContainer">
+            <h1>Add New Contact</h1>
+            <hr>
+            <div class="formContainer">
+                <div class="row">
+                    <div class="col-6" >
+                        <label for="name"> Name: </label>
+                        <input type="text" name="name" class="ml-2" placeholder="Enter Name" >
+                    </div>
+                    <div class="col-6" >
+                        <label for="email"> Email: </label>
+                        <input type="email" name="email" class="email" placeholder="Enter Email" >
+                    </div>
+                    <div class="col-6" >
+                        <label for="street"> Street: </label>
+                        <input type="text" name="street" class="ml-2" placeholder="Enter Street" >
+                    </div>
+                    <div class="col-6" >
+                        <label for="city"> City: </label>
+                        <input type="text" name="city" class="city" placeholder="Enter City" >
+                    </div>
+                    <div class="col-6" >
+                        <label for="postcode"> Postcode: </label>
+                        <input type="text" name="postcode" placeholder="Enter Postcode" >
+                    </div>
+                    <div class="col-6" >
+                        <label for="country"> Country: </label>
+                        <input type="text" name="country" placeholder="Enter Country" >
+                    </div>
+                    <div class="col-6" >
+                        <label for="countryCode"> Country Code: </label>
+                        <input type="text" name="countryCode" class="countryCode" placeholder="Enter Country Code" >
+                    </div>
+                    <div class="col-6 right" >
+                        <button type="submit" name="save" class="btn btn-primary" >Save</button>
+                        <button class="modalExit btn btn-secondary" name="cancel">Cancel</button>
+                    </div>
+                </div>
+            </div>
+          <button class="modalClose modalExit">X</button>
         </div>
       </div>
     </div>

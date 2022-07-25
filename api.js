@@ -11,7 +11,7 @@ app.get("/api/address/", (req, res) => {
 app.post("/api/address/", (req, res) => {
   const newAddress = {
     id: db.length + 1,
-    avatar: req.body.avatar,
+    avatar: "https://picsum.photos/50/50",
     first_name: req.body.first_name,
     email: req.body.email,
     street: req.body.street,
