@@ -41,7 +41,7 @@ describe("Testing API", () => {
       .patch("/api/address/1")
       .set("Accept", "application/json")
       .send({
-        first_name: "Salt",
+        name: "Salt",
         city: "Amsterdam",
         country: "Netherlands",
       })
@@ -51,7 +51,7 @@ describe("Testing API", () => {
           res.body.avatar,
           "https://robohash.org/perferendissedaccusamus.png?size=50x50&set=set1"
         );
-        assert.strictEqual(res.body.first_name, "Salt");
+        assert.strictEqual(res.body.name, "Salt");
         assert.strictEqual(res.body.email, "iwadham0@icq.com");
         assert.strictEqual(res.body.street, "86 Holy Cross Terrace");
         assert.strictEqual(res.body.number, "49581");

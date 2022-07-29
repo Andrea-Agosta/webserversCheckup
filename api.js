@@ -1,8 +1,15 @@
 let db = require("./db");
+const https = require("https");
 const express = require("express");
 const app = express();
 
+app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.get("/", function (req, res) {
+  res.sendFile(__dirname + "/index.html");
+});
 
 app.get("/api/address/", (req, res) => {
   res.json(db);
@@ -11,22 +18,22 @@ app.get("/api/address/", (req, res) => {
 app.post("/api/address/", (req, res) => {
   const newAddress = {
     id: db.length + 1,
-    avatar: "https://picsum.photos/50/50",
-    first_name: req.body.first_name,
+    avatar: `https://picsum.photos/id/${db.length + 1}/50/50`,
+    name: req.body.name,
     email: req.body.email,
     street: req.body.street,
     number: req.body.number,
     city: req.body.city,
     postcode: req.body.postcode,
     country: req.body.country,
+    countryCode: req.body.countryCode,
   };
-
   db.push(newAddress);
 
   res
     .status(201)
     .setHeader("location", `/api/address/${newAddress.id}`)
-    .json(newAddress);
+    .redirect("/");
 });
 
 app.patch("/api/address/:id", (req, res) => {
@@ -38,8 +45,7 @@ app.patch("/api/address/:id", (req, res) => {
     } else {
       let address = getAddressById(req.params.id);
       req.body.avatar !== undefined && (address.avatar = req.body.avatar);
-      req.body.first_name !== undefined &&
-        (address.first_name = req.body.first_name);
+      req.body.name !== undefined && (address.name = req.body.name);
       req.body.email !== undefined && (address.email = req.body.email);
       req.body.street !== undefined && (address.street = req.body.street);
       req.body.number !== undefined && (address.number = req.body.number);
