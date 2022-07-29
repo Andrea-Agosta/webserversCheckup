@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address List</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        // define the fetch 
+        function getUsers() {
+            fetch('http://localhost:3000/api/address/')
+            .then(response => response.json())
+            .then(data => {
+                for (i = 0; i < data.length; i++) {
+                    let card = document.createElement('div');
+                    let cardContainer = document.createElement('div');
+                    let cardContainer2 = document.createElement('div');
+                    let avatar = document.createElement('img');
+                    let name = document.createElement('h4');
+                    let email = document.createElement('h4');
+                    let street = document.createElement('h4');
+                    let city = document.createElement('h4');
+                    let postcode = document.createElement('h4');
+                    let country = document.createElement('h4');
+                    card.classList.add('card');
+                    cardContainer.classList.add('cardContainer');
+                    cardContainer2.classList.add('cardContainer2');
+                    avatar.classList.add('avatar');
+                    avatar.src = data[i].avatar;
+                    name.innerHTML = "NAME: " + `<span>`+ data[i].name +`</span>`;
+                    email.innerHTML = "EMAIL: " + `<span>`+ data[i].email +`</span>`;
+                    street.innerHTML = "STREET: " + `<span>`+ data[i].street +`</span>`;
+                    city.innerHTML = "CITY: " + `<span>`+ data[i].city +`</span>`;
+                    postcode.innerHTML = "POSTCODE: " + `<span>`+ data[i].postcode +`</span>`;
+                    country.innerHTML = "COUNTRY: " + `<span>`+ data[i].country + ' - ' + data[i].countryCode +`</span>`;
+
+                    document.getElementsByClassName('container')[0]
+                        .appendChild(card)
+                        .appendChild(cardContainer)
+                        .appendChild(avatar)
+                    document.getElementsByClassName('container')[0]
+                        .appendChild(card)
+                        .appendChild(cardContainer)
+                        .appendChild(name)
+                    document.getElementsByClassName('container')[0]
+                        .appendChild(card)
+                        .appendChild(cardContainer)
+                        .appendChild(email)
+                    document.getElementsByClassName('container')[0]
+                        .appendChild(card)
+                        .appendChild(cardContainer2)
+                        .appendChild(street);
+                    document.getElementsByClassName('container')[0]
+                        .appendChild(card)
+                        .appendChild(cardContainer2)
+                        .appendChild(city);
+                    document.getElementsByClassName('container')[0]
+                        .appendChild(card)
+                        .appendChild(cardContainer2)
+                        .appendChild(postcode);
+                    document.getElementsByClassName('container')[0]
+                        .appendChild(card)
+                        .appendChild(cardContainer2)
+                        .appendChild(country);
+                }
+            });
+        };
+
+        function addContact() {
+            const modals = document.querySelectorAll('[data-modal]');
+            modals.forEach(function (trigger) {
+                trigger.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    const modal = document.getElementById(trigger.dataset.modal);
+                    modal.classList.add('open');
+                    const exits = modal.querySelectorAll('.modalExit');
+                    exits.forEach(function (exit) {
+                        exit.addEventListener('click', function (event) {
+                            event.preventDefault();
+                            modal.classList.remove('open');
+                        });
+                    });
+                });
+            });    
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            getUsers();
+        });
+    </script>
+</head>
+<body>
+    <div class="bar">
+        <img class="logo" src="./images/logo.png" alt="logo">
+        <div class="title">Address Book</div>
+    </div>
+    <list>
+        <div class="container">
+        </div>
+    </list>
+    <button class="add" data-modal="modalOne" title="Add New Contact" onclick="addContact()"> + </button>
+
+    <!-- MODAL -->
+    <div class="modal" id="modalOne">
+        <div class="modalBg modalExit"></div>
+        <div class="modalContainer">
+            <h1>Add New Contact</h1>
+            <hr>
+            <form class="formContainer" method="post" action="http://localhost:3000/api/address/">
+                <div class="row">
+                    <div class="col-6" >
+                        <label for="name"> Name: </label>
+                        <input type="text" name="name" class="ml-2" placeholder="Enter Name" value="" autofocus>
+                    </div>
+                    <div class="col-6" >
+                        <label for="email"> Email: </label>
+                        <input type="email" name="email" class="email" placeholder="Enter Email" value="">
+                    </div>
+                    <div class="col-6" >
+                        <label for="street"> Street: </label>
+                        <input type="text" name="street" class="ml-2" placeholder="Enter Street" value="">
+                    </div>
+                    <div class="col-6" >
+                        <label for="city"> City: </label>
+                        <input type="text" name="city" class="city" placeholder="Enter City" value="">
+                    </div>
+                    <div class="col-6" >
+                        <label for="postcode"> Postcode: </label>
+                        <input type="text" name="postcode" placeholder="Enter Postcode" value="">
+                    </div>
+                    <div class="col-6" >
+                        <label for="country"> Country: </label>
+                        <input type="text" name="country" placeholder="Enter Country" value="">
+                    </div>
+                    <div class="col-6" >
+                        <label for="countryCode"> Country Code: </label>
+                        <input type="text" name="countryCode" class="countryCode" placeholder="Enter Country Code" value="">
+                    </div>
+                    <div class="col-6 right" >
+                        <button type="submit" name="save" class="btn btn-primary">Save </button>
+                        <button class="modalExit btn btn-secondary" name="cancel"> Cancel </button>
+                    </div>
+                </div>
+            </form>
+          <button class="modalClose modalExit">X</button>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
