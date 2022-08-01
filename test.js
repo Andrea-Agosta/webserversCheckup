@@ -20,20 +20,13 @@ describe("Testing API", () => {
 
     request(api.app)
       .post("/api/address/")
-      .set("Accept", "application/json")
-      .send({
-        street: "Via Dei Mirti",
-        number: "17",
-        postalCode: "97100",
-        city: "Ragusa",
-        countryCode: "IT",
-        country: "Italy",
-      })
-      .expect("Content-Type", /json/)
-      .expect((res) => {
-        assert.strictEqual(res.body.city, "Ragusa");
-      })
-      .expect(201, done);
+      .type("form")
+      .send({ street: "Via Dei Mirti" })
+      .send({ postcode: "97100" })
+      .send({ city: "Ragusa" })
+      .send({ countryCode: "IT" })
+      .send({ country: "Italy" })
+      .expect(302, done); //the response was successful because the system redirect on hompage
   });
 
   it("Update an existing address", (done) => {

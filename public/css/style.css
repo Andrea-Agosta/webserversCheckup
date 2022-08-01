@@ -55,6 +55,15 @@ body {
     width: 40%;
 }
 
+.cardContainer3 {
+    width: 100%;
+    text-align: right;
+    position: relative;
+    bottom: 30px;
+    right: 5px;
+    /* display: none; */
+}
+
 .avatar {
     border: 1px solid gray;
     border-radius: 50%;
@@ -64,6 +73,15 @@ body {
 span {
     font-weight: normal;
     color: gray;
+}
+
+/* ICONS EDIT AND DELETE */
+.editIcon {
+    width: 38px;
+}
+
+.deleteIcon {
+    width: 40px;
 }
 
 /* BUTTON ADD */
