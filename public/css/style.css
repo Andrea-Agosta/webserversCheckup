@@ -47,6 +47,10 @@ body {
     /* box-shadow: 3px 2px rgba(128, 128, 128, 0.777); */
 }
 
+.card p {
+    display: none;
+}
+
 .cardContainer {
     margin: 20px;
     border-right: 1px dashed lightgray;
@@ -58,10 +62,11 @@ body {
 .cardContainer3 {
     width: 100%;
     text-align: right;
-    position: relative;
-    bottom: 30px;
-    right: 5px;
-    /* display: none; */
+    display: none;
+}
+
+.card:hover .cardContainer3 {
+    display: block;
 }
 
 .avatar {
@@ -78,10 +83,27 @@ span {
 /* ICONS EDIT AND DELETE */
 .editIcon {
     width: 38px;
+    margin-left: auto;
+    position: relative;
+    bottom: 30px;
+    right: 5px;
+}
+
+.editIcon:hover {
+    filter: invert(100%);
+    filter: saturate(10);
 }
 
 .deleteIcon {
     width: 40px;
+    margin-left: auto;
+    position: relative;
+    bottom: 30px;
+    right: 5px;
+}
+
+.deleteIcon:hover {
+    filter: invert(100%);
 }
 
 /* BUTTON ADD */
@@ -230,4 +252,28 @@ span {
     background-color: white;
     color: gray;
     border: 2px solid gray;
+}
+
+/* MODAL PATCH UPDATE */
+.modalUpdate {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    transition: all 0.3s ease;
+    top: 0px;
+    left: 0px;
+    align-items: center;
+    justify-content: center;
+
+    display: none;
+}
+
+.modalContainerUpdate {
+    border-radius: 10px;
+    background: #fff;
+    position: relative;
+    padding: 30px;
+    width: 50%;
+    top: 10%;
+    left: 25%
 }

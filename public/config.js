@@ -8,6 +8,7 @@ function getUsers() {
         let cardContainer = document.createElement("div");
         let cardContainer2 = document.createElement("div");
         let cardContainer3 = document.createElement("div");
+        let idCard = document.createElement("p");
         let avatar = document.createElement("img");
         let name = document.createElement("h4");
         let email = document.createElement("h4");
@@ -24,7 +25,11 @@ function getUsers() {
         avatar.classList.add("avatar");
         editIcon.classList.add("editIcon");
         deleteIcon.classList.add("deleteIcon");
+        editIcon.addEventListener("click", function handleClick(event) {
+          editContact(event);
+        });
         avatar.src = data[i].avatar;
+        idCard.innerHTML = data[i].id;
         name.innerHTML = "NAME: " + `<span>` + data[i].name + `</span>`;
         email.innerHTML = "EMAIL: " + `<span>` + data[i].email + `</span>`;
         street.innerHTML = "STREET: " + `<span>` + data[i].street + `</span>`;
@@ -40,6 +45,11 @@ function getUsers() {
           `</span>`;
         editIcon.src = "./images/pencil.png";
         deleteIcon.src = "./images/trashIcon.png";
+        document
+          .getElementsByClassName("container")[0]
+          .appendChild(card)
+          .appendChild(cardContainer)
+          .appendChild(idCard);
         document
           .getElementsByClassName("container")[0]
           .appendChild(card)
@@ -124,6 +134,17 @@ function validate(event) {
   } else {
     document.getElementsByClassName("formContainer").submit();
   }
+}
+
+function editContact(event) {
+  document.getElementsByClassName("modalUpdate")[0].style.display = "block";
+
+  // TAKE THE CARD ID
+  const cardId = event.path[3].childNodes[0].childNodes[0].innerHTML;
+}
+
+function closeModalUpdate() {
+  document.getElementsByClassName("modalUpdate")[0].style.display = "none";
 }
 
 document.addEventListener("DOMContentLoaded", function () {

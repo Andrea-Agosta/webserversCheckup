@@ -19,7 +19,7 @@
     </list>
     <button class="add" data-modal="modalOne" title="Add New Contact" onclick="addContact()"> + </button>
 
-    <!-- MODAL -->
+    <!-- MODAL ADD NEW CONTACT -->
     <div class="modal" id="modalOne">
         <div class="modalBg modalExit"></div>
         <div class="modalContainer">
@@ -62,6 +62,36 @@
                 </div>
             </form>
           <button class="modalClose modalExit">X</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL PATCH CONTACT -->
+    <div class="modalUpdate" id="modalUpdate">
+        <div class="modalBg modalExit"></div>
+        <div class="modalContainerUpdate">
+            <h1>Update Contact</h1>
+            <hr>
+            <div class="card">
+                
+                <!-- TODO: Update the card with data send from JS -->
+                <!-- <div class="cardContainer">
+                    <p>1</p>
+                    <img class="avatar" src="https://robohash.org/perferendissedaccusamus.png?size=50x50&amp;set=set1">
+                    <h4>NAME: <span>Ira</span></h4><h4>EMAIL: <span>iwadham0@icq.com</span></h4>
+                </div>
+                <div class="cardContainer2">
+                    <h4>STREET: <span>86 Holy Cross Terrace</span></h4>
+                    <h4>CITY: <span>Aldeias de Cima</span></h4>
+                    <h4>POSTCODE: <span>4785-364</span></h4>
+                    <h4>COUNTRY: <span>Portugal - PT</span></h4>
+                    <div class="cardContainer3">
+                        <img class="editIcon" src="./images/pencil.png">
+                        <img class="deleteIcon" src="./images/trashIcon.png">
+                    </div> -->
+                </div>
+            </div>
+          <button class="modalClose modalExit" onclick="closeModalUpdate()">X</button>
         </div>
       </div>
     </div>
