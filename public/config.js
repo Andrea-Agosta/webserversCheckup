@@ -29,6 +29,9 @@ function getUsers() {
         editIcon.addEventListener("click", function handleClick(event) {
           editContactModal(event);
         });
+        deleteIcon.addEventListener("click", function handleClick(event) {
+          deleteModal(event);
+        });
         avatar.src = data[i].avatar;
         idCard.innerHTML = data[i].id;
         name.innerHTML = "NAME: " + `<span>` + data[i].name + `</span>`;
@@ -232,6 +235,34 @@ function patchData(event) {
     },
   }).then((resp) => {
     if (resp.status !== 200) {
+      alert("Something went wrong, try again");
+    }
+    location.reload();
+  });
+}
+
+// open Delete modal
+function deleteModal(event) {
+  document.getElementsByClassName("modalDelete")[0].style.display = "block";
+  // save id card on modal
+  document.getElementsByClassName("idDelete")[0].innerHTML =
+    event.path[3].childNodes[0].childNodes[0].innerHTML;
+}
+
+// close modal delete
+function closeModalDelete() {
+  document.getElementsByClassName("modalDelete")[0].style.display = "none";
+}
+
+// delete data from DB
+function deleteData(event) {
+  const idDelete = event.path[2].childNodes[5].innerHTML;
+
+  // delete data
+  fetch(`http://localhost:3000/api/address/${idDelete}`, {
+    method: "DELETE",
+  }).then((resp) => {
+    if (resp.status !== 204) {
       alert("Something went wrong, try again");
     }
     location.reload();

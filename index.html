@@ -100,13 +100,14 @@
     <div class="modalDelete">
         <div class="modalBg modalExit"></div>
         <div class="modalContainerDelete">
-            <h1 class="patchTitle">Do you want to delete?</h1>
+            <h1 class="patchTitle">Are you sure?</h1>
             <hr>
+            <p class="idDelete" hidden></p>
             <div class="btnContainer" >
-                <button class="btn btn-primary" onclick="deleteData(event)">delete </button>
-                <button class="modalExit btn btn-secondary" onclick="closeModalUpdate()"> Discard </button>
+                <button class="btn btn-primary" onclick="deleteData(event)">Delete </button>
+                <button class="modalExit btn btn-secondary" onclick="closeModalDelete()"> Discard </button>
             </div>
-            <button class="modalClose modalExit" onclick="closeModalUpdate()">X</button>
+            <button class="modalClose modalExit" onclick="closeModalDelete()">X</button>
         </div>
       </div>
     </div>

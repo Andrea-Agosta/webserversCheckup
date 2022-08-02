@@ -264,7 +264,6 @@ span {
     left: 0px;
     align-items: center;
     justify-content: center;
-
     display: none;
 }
 
@@ -300,3 +299,25 @@ span {
 }
 
 /* MODAL DELETE */
+.modalDelete {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    transition: all 0.3s ease;
+    top: 0px;
+    left: 0px;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.modalContainerDelete {
+    height: auto;
+    border-radius: 10px;
+    background: #fff;
+    position: relative;
+    padding: 30px;
+    width: 30%;
+    top: 20%;
+    left: 35%
+}
