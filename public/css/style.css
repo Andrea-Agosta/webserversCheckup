@@ -47,12 +47,26 @@ body {
     /* box-shadow: 3px 2px rgba(128, 128, 128, 0.777); */
 }
 
+.card p {
+    display: none;
+}
+
 .cardContainer {
     margin: 20px;
     border-right: 1px dashed lightgray;
     padding-right: 20px;
     float: left;
     width: 40%;
+}
+
+.cardContainer3 {
+    width: 100%;
+    text-align: right;
+    display: none;
+}
+
+.card:hover .cardContainer3 {
+    display: block;
 }
 
 .avatar {
@@ -64,6 +78,32 @@ body {
 span {
     font-weight: normal;
     color: gray;
+}
+
+/* ICONS EDIT AND DELETE */
+.editIcon {
+    width: 38px;
+    margin-left: auto;
+    position: relative;
+    bottom: 30px;
+    right: 5px;
+}
+
+.editIcon:hover {
+    filter: invert(100%);
+    filter: saturate(10);
+}
+
+.deleteIcon {
+    width: 40px;
+    margin-left: auto;
+    position: relative;
+    bottom: 30px;
+    right: 5px;
+}
+
+.deleteIcon:hover {
+    filter: invert(100%);
 }
 
 /* BUTTON ADD */
@@ -212,4 +252,72 @@ span {
     background-color: white;
     color: gray;
     border: 2px solid gray;
+}
+
+/* MODAL PATCH UPDATE */
+.modalUpdate {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    transition: all 0.3s ease;
+    top: 0px;
+    left: 0px;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.modalContainerUpdate {
+    height: 45%;
+    border-radius: 10px;
+    background: #fff;
+    position: relative;
+    padding: 30px;
+    width: 50%;
+    top: 10%;
+    left: 25%
+}
+
+.update {
+    width: 100%;
+}
+
+.patchTitle {
+    margin-bottom: -7px;
+}
+
+.patchSubtitle {
+    color: gray;
+    margin-top: -5px;
+    margin-bottom: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.btnContainer {
+    margin-top: 10px;
+    text-align: right;
+}
+
+/* MODAL DELETE */
+.modalDelete {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    transition: all 0.3s ease;
+    top: 0px;
+    left: 0px;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.modalContainerDelete {
+    height: auto;
+    border-radius: 10px;
+    background: #fff;
+    position: relative;
+    padding: 30px;
+    width: 30%;
+    top: 20%;
+    left: 35%
 }
