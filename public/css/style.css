@@ -269,6 +269,7 @@ span {
 }
 
 .modalContainerUpdate {
+    height: 45%;
     border-radius: 10px;
     background: #fff;
     position: relative;
@@ -277,3 +278,25 @@ span {
     top: 10%;
     left: 25%
 }
+
+.update {
+    width: 100%;
+}
+
+.patchTitle {
+    margin-bottom: -7px;
+}
+
+.patchSubtitle {
+    color: gray;
+    margin-top: -5px;
+    margin-bottom: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.btnContainer {
+    margin-top: 10px;
+    text-align: right;
+}
+
+/* MODAL DELETE */

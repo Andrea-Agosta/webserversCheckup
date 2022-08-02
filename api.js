@@ -43,16 +43,16 @@ app.patch("/api/address/:id", (req, res) => {
     if (req.body === undefined || req.body === {}) {
       res.status(400).send("Bad request");
     } else {
-      let address = getAddressById(req.params.id);
-      req.body.avatar !== undefined && (address.avatar = req.body.avatar);
-      req.body.name !== undefined && (address.name = req.body.name);
-      req.body.email !== undefined && (address.email = req.body.email);
-      req.body.street !== undefined && (address.street = req.body.street);
-      req.body.number !== undefined && (address.number = req.body.number);
-      req.body.city !== undefined && (address.city = req.body.city);
-      req.body.postcode !== undefined && (address.postcode = req.body.postcode);
-      req.body.country !== undefined && (address.country = req.body.country);
-      res.status(200).json(address);
+      let contact = getContactById(req.params.id);
+      req.body.avatar !== undefined && (contact.avatar = req.body.avatar);
+      req.body.name !== undefined && (contact.name = req.body.name);
+      req.body.email !== undefined && (contact.email = req.body.email);
+      req.body.street !== undefined && (contact.street = req.body.street);
+      req.body.number !== undefined && (contact.number = req.body.number);
+      req.body.city !== undefined && (contact.city = req.body.city);
+      req.body.postcode !== undefined && (contact.postcode = req.body.postcode);
+      req.body.country !== undefined && (contact.country = req.body.country);
+      res.status(200).send("successful");
     }
   }
 });
@@ -66,13 +66,13 @@ app.delete("/api/address/:id", (req, res) => {
   }
 });
 
-function getAddressById(id) {
-  return db.find((dev) => dev.id == id);
+function getContactById(id) {
+  return db.find((contact) => contact.id == id);
 }
 
 function idExistInDb(id) {
-  const dev = getAddressById(id);
-  return dev ? true : false;
+  const contact = getContactById(id);
+  return contact ? true : false;
 }
 
 module.exports = {

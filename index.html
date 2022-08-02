@@ -17,7 +17,7 @@
         <div class="container">
         </div>
     </list>
-    <button class="add" data-modal="modalOne" title="Add New Contact" onclick="addContact()"> + </button>
+    <button class="add" data-modal="modalOne" title="Add New Contact" onclick="addContactModal()"> + </button>
 
     <!-- MODAL ADD NEW CONTACT -->
     <div class="modal" id="modalOne">
@@ -70,28 +70,43 @@
     <div class="modalUpdate" id="modalUpdate">
         <div class="modalBg modalExit"></div>
         <div class="modalContainerUpdate">
-            <h1>Update Contact</h1>
+            <h1 class="patchTitle">Update Contact</h1>
             <hr>
-            <div class="card">
-                
-                <!-- TODO: Update the card with data send from JS -->
-                <!-- <div class="cardContainer">
-                    <p>1</p>
-                    <img class="avatar" src="https://robohash.org/perferendissedaccusamus.png?size=50x50&amp;set=set1">
-                    <h4>NAME: <span>Ira</span></h4><h4>EMAIL: <span>iwadham0@icq.com</span></h4>
+            <h4 class="patchSubtitle">Click on field to edit</h4>
+            <div class="card update">
+                <div class="cardContainer">
+                    <p class="idPatch"></p>
+                    <img class="avatar patchAvatar" src="">
+                    <h4 class="patchName"></h4>
+                    <h4 class="patchEmail"></h4>
                 </div>
                 <div class="cardContainer2">
-                    <h4>STREET: <span>86 Holy Cross Terrace</span></h4>
-                    <h4>CITY: <span>Aldeias de Cima</span></h4>
-                    <h4>POSTCODE: <span>4785-364</span></h4>
-                    <h4>COUNTRY: <span>Portugal - PT</span></h4>
-                    <div class="cardContainer3">
-                        <img class="editIcon" src="./images/pencil.png">
-                        <img class="deleteIcon" src="./images/trashIcon.png">
-                    </div> -->
+                    <h4 class="patchStreet"></h4>
+                    <h4 class="patchCity"></h4>
+                    <h4 class="patchPostcode"></h4>
+                    <h4 class="patchCountry"></h4>
                 </div>
             </div>
-          <button class="modalClose modalExit" onclick="closeModalUpdate()">X</button>
+            <div class="btnContainer" >
+                <button class="btn btn-primary" onclick="patchData(event)">Save </button>
+                <button class="modalExit btn btn-secondary" onclick="closeModalUpdate()"> Cancel </button>
+            </div>
+            <button class="modalClose modalExit" onclick="closeModalUpdate()">X</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL DELETE ELEMENT -->
+    <div class="modalDelete">
+        <div class="modalBg modalExit"></div>
+        <div class="modalContainerDelete">
+            <h1 class="patchTitle">Do you want to delete?</h1>
+            <hr>
+            <div class="btnContainer" >
+                <button class="btn btn-primary" onclick="deleteData(event)">delete </button>
+                <button class="modalExit btn btn-secondary" onclick="closeModalUpdate()"> Discard </button>
+            </div>
+            <button class="modalClose modalExit" onclick="closeModalUpdate()">X</button>
         </div>
       </div>
     </div>
