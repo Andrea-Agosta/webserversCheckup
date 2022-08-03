@@ -1,108 +1,120 @@
+let backendData = [];
+let filteredData = [];
+
 // define the fetch
-function getUsers() {
+function getContacts() {
   fetch("http://localhost:3000/api/address/")
     .then((response) => response.json())
     .then((data) => {
-      // create all card with the contacts
-      for (i = 0; i < data.length; i++) {
-        let card = document.createElement("div");
-        let cardContainer = document.createElement("div");
-        let cardContainer2 = document.createElement("div");
-        let cardContainer3 = document.createElement("div");
-        let idCard = document.createElement("p");
-        let avatar = document.createElement("img");
-        let name = document.createElement("h4");
-        let email = document.createElement("h4");
-        let street = document.createElement("h4");
-        let city = document.createElement("h4");
-        let postcode = document.createElement("h4");
-        let country = document.createElement("h4");
-        let editIcon = document.createElement("img");
-        let deleteIcon = document.createElement("img");
-        card.classList.add("card");
-        cardContainer.classList.add("cardContainer");
-        cardContainer2.classList.add("cardContainer2");
-        cardContainer3.classList.add("cardContainer3");
-        avatar.classList.add("avatar");
-        editIcon.classList.add("editIcon");
-        deleteIcon.classList.add("deleteIcon");
-        editIcon.addEventListener("click", function handleClick(event) {
-          editContactModal(event);
-        });
-        deleteIcon.addEventListener("click", function handleClick(event) {
-          deleteModal(event);
-        });
-        avatar.src = data[i].avatar;
-        idCard.innerHTML = data[i].id;
-        name.innerHTML = "NAME: " + `<span>` + data[i].name + `</span>`;
-        email.innerHTML = "EMAIL: " + `<span>` + data[i].email + `</span>`;
-        street.innerHTML = "STREET: " + `<span>` + data[i].street + `</span>`;
-        city.innerHTML = "CITY: " + `<span>` + data[i].city + `</span>`;
-        postcode.innerHTML =
-          "POSTCODE: " + `<span>` + data[i].postcode + `</span>`;
-        country.innerHTML =
-          "COUNTRY: " +
-          `<span>` +
-          data[i].country +
-          " - " +
-          data[i].countryCode +
-          `</span>`;
-        editIcon.src = "./images/pencil.png";
-        deleteIcon.src = "./images/trashIcon.png";
-        document
-          .getElementsByClassName("container")[0]
-          .appendChild(card)
-          .appendChild(cardContainer)
-          .appendChild(idCard);
-        document
-          .getElementsByClassName("container")[0]
-          .appendChild(card)
-          .appendChild(cardContainer)
-          .appendChild(avatar);
-        document
-          .getElementsByClassName("container")[0]
-          .appendChild(card)
-          .appendChild(cardContainer)
-          .appendChild(name);
-        document
-          .getElementsByClassName("container")[0]
-          .appendChild(card)
-          .appendChild(cardContainer)
-          .appendChild(email);
-        document
-          .getElementsByClassName("container")[0]
-          .appendChild(card)
-          .appendChild(cardContainer2)
-          .appendChild(street);
-        document
-          .getElementsByClassName("container")[0]
-          .appendChild(card)
-          .appendChild(cardContainer2)
-          .appendChild(city);
-        document
-          .getElementsByClassName("container")[0]
-          .appendChild(card)
-          .appendChild(cardContainer2)
-          .appendChild(postcode);
-        document
-          .getElementsByClassName("container")[0]
-          .appendChild(card)
-          .appendChild(cardContainer2)
-          .appendChild(country);
-        document
-          .getElementsByClassName("container")[0]
-          .appendChild(card)
-          .appendChild(cardContainer2)
-          .appendChild(cardContainer3)
-          .appendChild(editIcon);
-        document
-          .getElementsByClassName("container")[0]
-          .appendChild(card)
-          .appendChild(cardContainer2)
-          .appendChild(cardContainer3)
-          .appendChild(deleteIcon);
-      }
+      backendData.push(data);
+      filteredData.push(data);
+      filteredData = filteredData[0];
+      backendData = backendData[0];
+      renderContacts();
     });
+}
+
+// render contacts
+function renderContacts() {
+  let data = filteredData;
+  // create all card with the contacts
+  for (i = 0; i < data.length; i++) {
+    let card = document.createElement("div");
+    let cardContainer = document.createElement("div");
+    let cardContainer2 = document.createElement("div");
+    let cardContainer3 = document.createElement("div");
+    let idCard = document.createElement("p");
+    let avatar = document.createElement("img");
+    let name = document.createElement("h4");
+    let email = document.createElement("h4");
+    let street = document.createElement("h4");
+    let city = document.createElement("h4");
+    let postcode = document.createElement("h4");
+    let country = document.createElement("h4");
+    let editIcon = document.createElement("img");
+    let deleteIcon = document.createElement("img");
+    card.classList.add("card");
+    cardContainer.classList.add("cardContainer");
+    cardContainer2.classList.add("cardContainer2");
+    cardContainer3.classList.add("cardContainer3");
+    avatar.classList.add("avatar");
+    editIcon.classList.add("editIcon");
+    deleteIcon.classList.add("deleteIcon");
+    editIcon.addEventListener("click", function handleClick(event) {
+      editContactModal(event);
+    });
+    deleteIcon.addEventListener("click", function handleClick(event) {
+      deleteModal(event);
+    });
+    avatar.src = data[i].avatar;
+    idCard.innerHTML = data[i].id;
+    name.innerHTML = "NAME: " + `<span>` + data[i].name + `</span>`;
+    email.innerHTML = "EMAIL: " + `<span>` + data[i].email + `</span>`;
+    street.innerHTML = "STREET: " + `<span>` + data[i].street + `</span>`;
+    city.innerHTML = "CITY: " + `<span>` + data[i].city + `</span>`;
+    postcode.innerHTML = "POSTCODE: " + `<span>` + data[i].postcode + `</span>`;
+    country.innerHTML =
+      "COUNTRY: " +
+      `<span>` +
+      data[i].country +
+      " - " +
+      data[i].countryCode +
+      `</span>`;
+    editIcon.src = "./images/pencil.png";
+    deleteIcon.src = "./images/trashIcon.png";
+    document
+      .getElementsByClassName("container")[0]
+      .appendChild(card)
+      .appendChild(cardContainer)
+      .appendChild(idCard);
+    document
+      .getElementsByClassName("container")[0]
+      .appendChild(card)
+      .appendChild(cardContainer)
+      .appendChild(avatar);
+    document
+      .getElementsByClassName("container")[0]
+      .appendChild(card)
+      .appendChild(cardContainer)
+      .appendChild(name);
+    document
+      .getElementsByClassName("container")[0]
+      .appendChild(card)
+      .appendChild(cardContainer)
+      .appendChild(email);
+    document
+      .getElementsByClassName("container")[0]
+      .appendChild(card)
+      .appendChild(cardContainer2)
+      .appendChild(street);
+    document
+      .getElementsByClassName("container")[0]
+      .appendChild(card)
+      .appendChild(cardContainer2)
+      .appendChild(city);
+    document
+      .getElementsByClassName("container")[0]
+      .appendChild(card)
+      .appendChild(cardContainer2)
+      .appendChild(postcode);
+    document
+      .getElementsByClassName("container")[0]
+      .appendChild(card)
+      .appendChild(cardContainer2)
+      .appendChild(country);
+    document
+      .getElementsByClassName("container")[0]
+      .appendChild(card)
+      .appendChild(cardContainer2)
+      .appendChild(cardContainer3)
+      .appendChild(editIcon);
+    document
+      .getElementsByClassName("container")[0]
+      .appendChild(card)
+      .appendChild(cardContainer2)
+      .appendChild(cardContainer3)
+      .appendChild(deleteIcon);
+  }
 }
 
 // open AddContactModal
@@ -269,7 +281,58 @@ function deleteData(event) {
   });
 }
 
+function displayOff(data) {
+  for (i = 0; i < data.length; i++) {
+    if (data[i].cardId === undefined) {
+      document.getElementsByClassName("card")[i].style.display = "none";
+    } else {
+      document.getElementsByClassName("card")[data[i].cardId].style.display =
+        "none";
+    }
+  }
+}
+
+function displayOn(data) {
+  // prendo i dati e display all data with id
+  for (i = 0; i < data.length; i++) {
+    if (data[i].cardId === undefined) {
+      document.getElementsByClassName("card")[i].style.display = "block";
+    } else {
+      document.getElementsByClassName("card")[data[i].cardId].style.display =
+        "block";
+    }
+  }
+}
+
 // get all user from db
 document.addEventListener("DOMContentLoaded", function () {
-  getUsers();
+  getContacts();
+
+  // filter data
+  let inputElem = document.getElementsByClassName("filter")[0];
+  inputElem.addEventListener("input", () => {
+    // display off all card elements
+    displayOff(filteredData);
+
+    if (inputElem.value === "") {
+      displayOff(filteredData);
+      filteredData = backendData;
+      displayOn(filteredData);
+    } else {
+      filteredData = [];
+
+      // filter all data and push on array
+      backendData.forEach((data, index) => {
+        if (
+          data.city.includes(inputElem.value) ||
+          data.name.includes(inputElem.value) ||
+          data.street.includes(inputElem.value)
+        ) {
+          data.cardId = index;
+          filteredData.push(data);
+        }
+      });
+      displayOn(filteredData);
+    }
+  });
 });
